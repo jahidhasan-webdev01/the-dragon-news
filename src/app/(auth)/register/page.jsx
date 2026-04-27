@@ -1,18 +1,31 @@
 "use client"
 
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const RegisterPage = () => {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm()
 
-    const handleRegister = (data) => {
-        console.log(data);
+    const handleRegister = async (data) => {
+        const { data: response, error } = await authClient.signUp.email({
+            name: data.name,
+            email: data.email,
+            password: data.password,
+        })
+
+        if (error) {
+            toast.error(`${error.message}`)
+        }
+
+        if (response) {
+            toast.success("User created successfully.")
+        }
     }
 
     return (
