@@ -9,7 +9,7 @@ const NewsCard = ({ news }) => {
         <>
             {
                 news.map((n, index) => {
-                    const { image_url, title, author, details } = n;
+                    const { _id, image_url, title, author, details } = n;
                     return <div key={index} className="border-2 border-gray-100 rounded-md">
                         <div className="flex justify-between items-center bg-gray-100 p-4">
                             <div className="flex items-center gap-4">
@@ -32,7 +32,7 @@ const NewsCard = ({ news }) => {
                                 <p className="text-gray-500 line-clamp-4">{details}</p>
                             </div>
                             <button className="mt-2 font-bold text-amber-500">
-                                <Link href={"/"}>Read More</Link>
+                                <Link href={`/news/${_id}`}>Read More</Link>
                             </button>
 
                             <hr className="my-5 text-gray-300" />

@@ -11,3 +11,10 @@ export const getAllNewsByCategoryID = async (category_id = "01") => {
 
     return result;
 }
+
+export const getNewsByID = async (id) => {
+    const response = await fetch(`https://openapi.programming-hero.com/api/news/${id}`);
+    const result = await response.json();
+
+    return result.data[0];
+}
