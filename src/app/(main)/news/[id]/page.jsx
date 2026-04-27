@@ -19,7 +19,7 @@ const NewsDetails = async ({ params }) => {
                 <h1 className="font-bold text-xl">{news?.title}</h1>
                 <p>{news?.details}</p>
             </div>
-            <div className="col-span-4 lg:col-span-1 space-y-5">
+            <div className="col-span-4 lg:col-span-1 space-y-5 mt-5 lg:mt-0">
                 <h1 className="font-bold mb-3 text-xl">Related News</h1>
                 {
                     relatedNews.map((n, index) => <RelatedNewsCard key={index} n={n} />)

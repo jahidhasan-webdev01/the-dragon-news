@@ -3,7 +3,7 @@ import { CgProfile } from "react-icons/cg";
 
 const Navbar = () => {
     return (
-        <div className="mt-5 container mx-auto flex justify-between items-center px-5 md:px-0">
+        <div className="mt-5 container mx-auto flex justify-between items-center px-5 md:px-0 py-5">
             <div className="hidden lg:block"></div>
             <div className="space-x-4 text-gray-500">
                 <Link href={"/"} className="hover:text-black hover:border-b-2 hover:border-red-500 hover:pb-1">Home</Link>
