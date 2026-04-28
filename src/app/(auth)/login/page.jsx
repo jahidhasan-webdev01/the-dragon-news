@@ -1,11 +1,16 @@
 "use client"
 
 import { authClient } from "@/lib/auth-client";
+import { reddit } from "better-auth";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginPage = () => {
+    const [showPassword, setShowPassword] = useState(false);
     const {
         register,
         handleSubmit,
@@ -24,6 +29,7 @@ const LoginPage = () => {
 
         if (response) {
             toast.success("Login successfull.")
+            redirect("/")
         }
     }
 
@@ -49,18 +55,25 @@ const LoginPage = () => {
                         <p className="text-red-500">{errors?.email?.message}</p>
 
                         <label className="label font-bold mt-2">Password</label>
-                        <input
-                            type="password"
-                            className="input w-full bg-gray-100"
-                            placeholder="Enter your password"
-                            {...register("password", {
-                                required: "Password is required",
-                                minLength: {
-                                    value: 8,
-                                    message: "Password must be at least 8 characters"
+                        <div className="relative">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                className="input w-full bg-gray-100"
+                                placeholder="Enter your password"
+                                {...register("password", {
+                                    required: "Password is required",
+                                    minLength: {
+                                        value: 8,
+                                        message: "Password must be at least 8 characters"
+                                    }
+                                })}
+                            />
+                            <span onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/4 cursor-pointer">
+                                {
+                                    !showPassword ? <FaEyeSlash className="text-xl" /> : <FaEye className="text-xl" />
                                 }
-                            })}
-                        />
+                            </span>
+                        </div>
                         <p className="text-red-500">{errors?.password?.message}</p>
 
                         <button className="btn btn-neutral mt-4">Login</button>
